@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
-public class CustomerService {
+
+public interface CustomerService {
 
 }
