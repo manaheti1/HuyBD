@@ -23,6 +23,7 @@ import lombok.Setter;
 @Table(name = "promotion",schema="huySlayer")
 public class Promotion {
 	@Id
+	@Column(name="promotion_id")
 	private int id;
 	@Column
 	private String name;
@@ -32,6 +33,6 @@ public class Promotion {
 	private String image;
 	@Column
 	private String description;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "promotion")
 	private List<Product> products;
 }

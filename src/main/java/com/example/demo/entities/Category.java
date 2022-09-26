@@ -23,9 +23,10 @@ import lombok.Setter;
 @Table(name = "category", schema = "huySlayer")
 public class Category {
 	@Id
+	@Column(name="category_id")
 	private String id;
 	@Column(name = "name")
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
 	private List<Product> products;
 }

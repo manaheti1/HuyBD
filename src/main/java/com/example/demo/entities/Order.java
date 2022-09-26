@@ -24,14 +24,15 @@ import lombok.Setter;
 @Table(name = "orders",schema="huySlayer")
 public class Order {
 	@Id
+	@Column(name="order_id")
 	private String id;
 	@Column
 	private String address;
 	@Column
 	private String status;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order", orphanRemoval = true)
 	private List<OrderItem> orderItems;
 	@ManyToOne
-	@JoinColumn(referencedColumnName = "user_id", name = "user_id")
-	private Account account;
+	@JoinColumn(referencedColumnName = "customer_id", name = "customer_id")
+	private Customer customer;
 }

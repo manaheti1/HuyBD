@@ -25,6 +25,7 @@ import lombok.Setter;
 @Table(name = "product", schema = "huySlayer")
 public class Product {
 	@Id
+	@Column(name="product_id")
 	private String id;
 	@Column(name = "name")
 	private String name;
@@ -36,14 +37,14 @@ public class Product {
 	private int status;
 	@Column(name = "description")
 	private String description;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	private List<OrderItem> orderItems;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	private List<CartItem> cartItems;
 	@ManyToOne
-	@JoinColumn(name = "", referencedColumnName = "")
+	@JoinColumn(name = "promotion_id", referencedColumnName = "promotion_id")
 	private Promotion promotion;
 	@ManyToOne
-	@JoinColumn(name = "", referencedColumnName = "")
+	@JoinColumn(name = "category_id", referencedColumnName = "category_id")
 	private Category category;
 }

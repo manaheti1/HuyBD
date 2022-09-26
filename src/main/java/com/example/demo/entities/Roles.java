@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,12 +21,34 @@ import lombok.Setter;
 @Setter
 @Entity
 @AllArgsConstructor
-@Table(name = "role", schema = "huySlayer")
+@Table(name = "roles", schema = "huySlayer")
 public class Roles {
 	@Id
-	private int id;
+	@Column(name="role_id")
+	private int roleID;
 	@Column
 	private String roleName;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
 	private List<Account> accounts;
+	public Roles(String roleName) {
+	    super();
+	    this.roleName = roleName;
+	  }
+	public Roles(int roleID, String roleName) {
+	    super();
+	    this.roleID = roleID;
+	    this.roleName = roleName;
+	  }
+	@Override
+	  public boolean equals(Object obj) {
+	    if (this == obj)
+	      return true;
+	    if (obj == null)
+	      return false;
+	    if (getClass() != obj.getClass())
+	      return false;
+	    Roles other = (Roles) obj;
+	    return Objects.equals(accounts, other.accounts) && roleID == other.roleID
+	        && Objects.equals(roleName, other.roleName);
+	  }
 }

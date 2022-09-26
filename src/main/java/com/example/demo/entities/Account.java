@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +26,8 @@ import lombok.Setter;
 @Table(name = "account",schema="huySlayer")
 public class Account{
 	@Id
-	@Column(name="account_id")
-	private String id;
+	@Column(name="user_id")
+	private String accountID;
 	@Column(name="address")
 	private String address;
 	@Column(name="date_of_birth")
@@ -41,8 +42,15 @@ public class Account{
 	private String phone;
 	@Column(name="status")
 	private int status;
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "",fetch = FetchType.LAZY)
+	@Column(name="username")
+	private String userName;
+	@Column(name="password")
+	private String password;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "role_id",name="role_id")
+	private Roles role;
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "account",fetch = FetchType.LAZY)
 	private List<Customer> customers;
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "",fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "account",fetch = FetchType.LAZY)
 	private List<Manager> managers;
 }

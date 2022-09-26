@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -24,10 +25,11 @@ import lombok.Setter;
 @Table(name = "cart", schema = "huySlayer")
 public class Cart {
 	@Id
+	@Column(name="cart_id")
 	private String id;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", fetch = FetchType.LAZY)
 	private List<CartItem> cartItems;
 	@OneToOne
-	@JoinColumn(referencedColumnName = "", name = "")
+	@JoinColumn(referencedColumnName = "customer_id", name = "customer_id")
 	private Customer customer;
 }

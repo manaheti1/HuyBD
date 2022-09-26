@@ -1,7 +1,10 @@
 package com.example.demo.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,7 +21,9 @@ import lombok.Setter;
 @Table(name = "manager",schema="huySlayer")
 public class Manager {
 	@Id
+	@Column(name="manager_id")
 	private String id;
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "user_id")
 	private Account account;
 }
